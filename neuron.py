@@ -10,7 +10,7 @@ class  Neuron:
         self.derivative_bias = 0
 
     def activation_funciton(self, x):
-        return 1/(1+np.exp(-1))
+        return 1/(1+np.exp(-x))
 
     def derivative_activation(self,x):
         return x* (1-x)
