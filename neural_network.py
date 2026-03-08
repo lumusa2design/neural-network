@@ -40,6 +40,17 @@ class NeuralNetwork:
         for i in range(X):
             predictions.append(self.forward(X[i]))
         return np.array(predictions)
+    
+
+if __name__ == "__main__":
+    x = np.array([[0,0],[0,1],[1,0],[1,1]])
+    y = np.array([[0],[1],[1],[0]])
+    nn = NeuralNetwork()
+    nn.add_layer(4,2)
+    nn.add_layer(1,4)
+    nn.train(x,y, epochs=1000, learning_rate=0.1)
+    predictions = nn.predict(x)
+    print("Predictions: ", predictions)
 
 
 
