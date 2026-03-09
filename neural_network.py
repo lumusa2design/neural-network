@@ -22,36 +22,48 @@ class NeuralNetwork:
         for layer in reversed(self.layers):
             loss_gradient = layer.backward(loss_gradient, learning_rate)
 
-    def train(self, X, Y, epochs =1000, learning_rate = 0.1):
-        for  epoch in range(epochs):
+    def train(self, X, Y, epochs=1000, learning_rate=0.1):
+        for epoch in range(epochs):
             loss = 0
-            for i in range(X):
+            for i in range(len(X)):
                 output = self.forward(X[i])
-                loss += np.mean((Y[i] - output)**2)
+                loss += np.mean((Y[i] - output) ** 2)
                 loss_gradient = 2 * (output - Y[i])
                 self.backward(loss_gradient, learning_rate)
-            loss /=len(X)
+
+            loss /= len(X)
             self.loss_list.append(loss)
+
             if epoch % 100 == 0:
                 print(f"Epoch: {epoch}, loss: {loss}")
 
-    def predict(self,X):
+    def predict(self, X):
         predictions = []
-        for i in range(X):
+        for i in range(len(X)):
             predictions.append(self.forward(X[i]))
         return np.array(predictions)
-    
+
 
 if __name__ == "__main__":
-    x = np.array([[0,0],[0,1],[1,0],[1,1]])
-    y = np.array([[0],[1],[1],[0]])
+    X = np.array([
+        [0.5, 0.2, 0.1],
+        [0.9, 0.7, 0.3],
+        [0.4, 0.6, 0.8]
+    ])
+
+    y = np.array([
+        [0.3],
+        [0.6],
+        [0.9]
+    ])
+
     nn = NeuralNetwork()
-    nn.add_layer(4,2)
-    nn.add_layer(1,4)
-    nn.train(x,y, epochs=1000, learning_rate=0.1)
-    predictions = nn.predict(x)
-    print("Predictions: ", predictions)
+    nn.add_layer(num_neuron=3, input_size=3)
+    nn.add_layer(num_neuron=3, input_size=3)
+    nn.add_layer(num_neuron=1, input_size=3)
 
+    nn.train(X, y, epochs=1000, learning_rate=0.1)
 
-
-
+    predictions = nn.predict(X)
+    print("Predicciones:")
+    print(predictions)

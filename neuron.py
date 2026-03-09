@@ -29,6 +29,13 @@ class  Neuron:
         self.weight -= self.derivative_weight * learning_rate
         self.bias -= learning_rate * self.derivative_bias
         return d_input
+    
+    def to_dict(self):
+        return {
+            "weight": self.weight.tolist(),
+            "bias": self.bias,
+            "output": self.output
+        }
 
 if __name__ == "__main__":
     neuron = Neuron(3)
