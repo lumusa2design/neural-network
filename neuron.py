@@ -36,6 +36,7 @@ class  Neuron:
             "bias": self.bias,
             "output": self.output
         }
+    
 
 if __name__ == "__main__":
     neuron = Neuron(3)
