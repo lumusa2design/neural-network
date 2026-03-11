@@ -36,7 +36,10 @@ class  Neuron:
             "bias": self.bias,
             "output": self.output
         }
-    
+    def from_dict(self, data):
+        self.weight = np.array(data["weight"])
+        self.bias = data["bias"]
+        self.output = data["output"]
 
 if __name__ == "__main__":
     neuron = Neuron(3)
