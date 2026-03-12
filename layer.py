@@ -15,6 +15,10 @@ class Layer:
             d_inputs += neuron.backward(d_values[i], learning_rate)
 
         return d_inputs
+    def to_dict(self):
+        return {
+            "neurons": [neuron.to_dict() for neuron in self.neurons]
+        }
 if __name__ == "__main__":
     layer = Layer(3,4)
     inputs = np.array([1,8,5,6])
