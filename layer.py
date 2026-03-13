@@ -19,6 +19,11 @@ class Layer:
         return {
             "neurons": [neuron.to_dict() for neuron in self.neurons]
         }
+    
+    def from_dict(self, data):
+        for neuron_data, neuron in zip(data["neurons"], self.neurons):
+            neuron.from_dict(neuron_data)
+            
 if __name__ == "__main__":
     layer = Layer(3,4)
     inputs = np.array([1,8,5,6])
