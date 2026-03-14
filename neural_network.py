@@ -1,6 +1,6 @@
 import numpy as np
 from layer import Layer
-
+import json
 class NeuralNetwork:
     def __init__(self):
         self.layers = []
@@ -42,6 +42,13 @@ class NeuralNetwork:
         for i in range(len(X)):
             predictions.append(self.forward(X[i]))
         return np.array(predictions)
+    
+    def save_model(self, file_path):
+        model_data = {
+            "layers": [layer.to_dict() for layer in self.layers]
+        }
+        with open(file_path, 'w') as f:
+            json.dump(model_data, f)
 
 
 if __name__ == "__main__":
