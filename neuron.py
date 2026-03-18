@@ -23,7 +23,7 @@ class  Neuron:
 
     def backward(self, d_output,learning_rate):
         d_activation = d_output * self.derivative_activation((self.output))
-        self.derivative_weight = np.dot(self.inputs, d_activation)
+        self.derivative_weight = self.inputs * d_activation
         self.derivative_bias = d_activation
         d_input = np.dot(d_activation, self.weight)
         self.weight -= self.derivative_weight * learning_rate
