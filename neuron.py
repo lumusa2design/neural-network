@@ -25,7 +25,7 @@ class  Neuron:
         d_activation = d_output * self.derivative_activation((self.output))
         self.derivative_weight = self.inputs * d_activation
         self.derivative_bias = d_activation
-        d_input = np.dot(d_activation, self.weight)
+        d_input = self.weight * d_activation
         self.weight -= self.derivative_weight * learning_rate
         self.bias -= learning_rate * self.derivative_bias
         return d_input
