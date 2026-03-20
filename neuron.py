@@ -11,6 +11,12 @@ class  Neuron:
 
     def activation_funciton(self, x):
         return 1/(1+np.exp(-x))
+    
+    def relu(self, x):
+        return np.maximum(0, x)
+
+    def relu_derivative(self, x):
+        return (x > 0).astype(float)
 
     def derivative_activation(self,x):
         return x* (1-x)
@@ -36,6 +42,7 @@ class  Neuron:
             "bias": self.bias,
             "output": self.output
         }
+        
     def from_dict(self, data):
         self.weight = np.array(data["weight"])
         self.bias = data["bias"]
