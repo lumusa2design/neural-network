@@ -47,6 +47,12 @@ class  Neuron:
         self.weight = np.array(data["weight"])
         self.bias = data["bias"]
         self.output = data["output"]
+    
+    def mse(y_true, y_pred):
+        return np.mean((y_true - y_pred) ** 2)
+
+    def mse_derivative(y_true, y_pred):
+        return 2 * (y_pred - y_true) / y_true.size
 
 if __name__ == "__main__":
     neuron = Neuron(3)
