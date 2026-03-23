@@ -5,13 +5,15 @@ class NeuralNetwork:
     def __init__(self):
         self.layers = []
         self.loss_list = []
-
-    def add_layer(self, num_neuron, input_size):
+            
+    def add_layer(self, num_neurons, input_size=None, activation="sigmoid"):
         if not self.layers:
-            self.layers.append(Layer(num_neuron, input_size))
+            if input_size is None:
+                raise ValueError("La primera capa necesita input_size")
+            self.layers.append(Layer(num_neurons, input_size, activation))
         else:
             previous_output_size = len(self.layers[-1].neurons)
-            self.layers.append(Layer(num_neuron, previous_output_size))
+            self.layers.append(Layer(num_neurons, previous_output_size, activation))
 
     def forward(self, inputs):
         for layer in self.layers:
