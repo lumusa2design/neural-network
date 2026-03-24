@@ -67,9 +67,9 @@ if __name__ == "__main__":
     ])
 
     nn = NeuralNetwork()
-    nn.add_layer(num_neuron=3, input_size=3)
-    nn.add_layer(num_neuron=3, input_size=3)
-    nn.add_layer(num_neuron=1, input_size=3)
+    nn.add_layer(num_neurons=3, input_size=3)
+    nn.add_layer(num_neurons=3, input_size=3)
+    nn.add_layer(num_neurons=1, input_size=3)
 
     nn.train(X, y, epochs=1000, learning_rate=0.1)
 
