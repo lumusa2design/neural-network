@@ -66,13 +66,29 @@ if __name__ == "__main__":
         [0.9]
     ])
 
-    nn = NeuralNetwork()
-    nn.add_layer(num_neurons=3, input_size=3)
-    nn.add_layer(num_neurons=3, input_size=3)
-    nn.add_layer(num_neurons=1, input_size=3)
+if __name__ == "__main__":
+    X = np.array([
+        [0, 0],
+        [0, 1],
+        [1, 0],
+        [1, 1]
+    ], dtype=float)
 
-    nn.train(X, y, epochs=1000, learning_rate=0.1)
+    y = np.array([
+        [0],
+        [1],
+        [1],
+        [0]
+    ], dtype=float)
+
+    nn = NeuralNetwork()
+    nn.add_layer(num_neurons=4, input_size=2, activation="relu")
+    nn.add_layer(num_neurons=1, activation="sigmoid")
+
+    nn.train(X, y, epochs=5000, learning_rate=0.1)
 
     predictions = nn.predict(X)
     print("Predicciones:")
     print(predictions)
+    print("Valores reales:")
+    print(y)
